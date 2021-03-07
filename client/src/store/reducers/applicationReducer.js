@@ -1,6 +1,7 @@
 const initialState = {
   applications: [],
   application: {
+    id: '',
     name: '',
     information: '',
     total_users: 0,
@@ -18,8 +19,9 @@ export default (state = initialState, { type, payload }) => {
     case 'CREATE':
       return { ...state, applications: state.applications.concat(payload) }
     case 'UPDATE':
-      const newDataUpdated = state.applications.filter(el => {
-        return el.id === payload.id ? payload : el
+      const newDataUpdated = state.applications.map(el => {
+        if (el.id === payload.id) el = payload
+        return el
       })
       return { ...state, applications: newDataUpdated }
     case 'DELETE':

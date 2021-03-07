@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Container, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOne, insertData } from '../store/actions/application'
+import { fetchOne, insertData, updateData } from '../store/actions/application'
 
-export const ModalForm = ({ show, handleClose, id }) => {
-  const { application } = useSelector(state => state.application)
+export const ModalUpdate = ({ show, handleClose, data }) => {
+  const [application, setApplication] = useState(data)
   const dispatch = useDispatch()
+
   useEffect(() => {
-    dispatch(fetchOne(id))
-  }, [dispatch])
+    setApplication(data)
+  }, [data])
 
   const handleSubmit = e => {
     e.preventDefault()
     console.log(application)
-    dispatch(insertData(application))
+    dispatch(updateData(data.id, application))
     setApplication({
+      id: '',
       name: '',
       information: '',
       total_users: 0,
@@ -36,7 +38,7 @@ export const ModalForm = ({ show, handleClose, id }) => {
       <Form onSubmit={handleSubmit}>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add Social Media</Modal.Title>
+            <Modal.Title>Update Social Media</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>

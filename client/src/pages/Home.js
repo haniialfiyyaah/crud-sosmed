@@ -3,21 +3,19 @@ import { useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { ModalForm } from '../components/ModalForm'
+import { ModalUpdate } from '../components/ModalUpdate'
 import { deleteData, fetchAll, fetchOne } from '../store/actions/application'
-// import { Button, Table } from 'react-bootstrap'
 
 function Home() {
   const [show, setShow] = useState(false)
+  const [showUpdate, setShowUpdate] = useState(false)
+  const [id, setId] = useState(false)
   const { applications, application } = useSelector(state => state.application)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchAll())
   }, [dispatch])
 
-  const onUpdate = id => {
-    dispatch(fetchOne(id))
-    setShow(true)
-  }
   const onDelete = id => {
     console.log(id)
     dispatch(deleteData(id))
@@ -25,12 +23,30 @@ function Home() {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  // UPDATE
+  const onUpdate = id => {
+    setId(id)
+    setShowUpdate(true)
+  }
+  useEffect(() => {
+    if (id) dispatch(fetchOne(id))
+  }, [dispatch, id])
+  const handleCloseUpdate = () => {
+    setId(false)
+    setShowUpdate(false)
+  }
+
   return (
     <>
       <Button variant='primary' onClick={handleShow}>
         ADD DATA
       </Button>
       <ModalForm show={show} handleClose={handleClose} data={application} />
+      <ModalUpdate
+        show={showUpdate}
+        handleClose={handleCloseUpdate}
+        data={application}
+      />
 
       <Table striped bordered hover>
         <thead>
