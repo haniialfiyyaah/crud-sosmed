@@ -1,0 +1,37 @@
+[
+  {
+    "name": "tiktok",
+    "information": "aplikasi platform sosial video pendek yang didukung dengan musik",
+    "total_users": 10000,
+    "founder": "Mark Zuckerberg",
+    "date_founded": "2016-09-01"
+  },
+  {
+    "name": "facebook",
+    "information": "aplikasi layanan jejaring sosial",
+    "total_users": 20000,
+    "founder": "Zhang Yiming",
+    "date_founded": "2004-02-04"
+  },
+  {
+    "name": "instagram",
+    "information": "aplikasi berbagi foto dan video",
+    "total_users": 30000,
+    "founder": "Kevin Systrom",
+    "date_founded": "2010-10-06"
+  },
+  {
+    "name": "whatsapp",
+    "information": "aplikasi messaging",
+    "total_users": 40000,
+    "founder": "Jan Koum",
+    "date_founded": "2009-05-03"
+  },
+  {
+    "name": "twitter",
+    "information": "aplikasi jejaring sosial micro-blogging",
+    "total_users": 50000,
+    "founder": "Jack Dorsey",
+    "date_founded": "2006-07-15"
+  }
+]
